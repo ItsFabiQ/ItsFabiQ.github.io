@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fabiku Search</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-      <img src="/pictures/fox-7405603_12801.png" alt="" srcset="" class="fox">
-      <div class="search-container">
-        
-        <form action="https://google.com/search" method="GET">
-             <input class="searchbar" type="text" name="q" placeholder="Search..." required>
-        <button type="submit">Search</button>
-        </form>
-     
-        </div>
+      <div id="panorama"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+  <script>
+    pannellum.viewer('panorama', {
+      "type": "equirectangular",
+      "panorama": "/pictures/1/metroexodus3601.jpg",
+      "autoLoad": true,
+      "compass": false,
+      "showZoomCtrl": true,
+      "hotSpots": [
+
+      ]
+    });
+  </script>
 
 
     
