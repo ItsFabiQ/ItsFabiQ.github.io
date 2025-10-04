@@ -3,6 +3,7 @@ html{
     justify-content: center;
     align-items: center;
     height: 100%;
+    margin:0;
 }
 
 #panorama { 
@@ -18,6 +19,7 @@ body {
     align-items: center;
     height: max-content;
     width: 100%;
+    margin:0;
 }
 
 
