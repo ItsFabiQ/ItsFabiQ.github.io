@@ -13,9 +13,13 @@
 
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
   <script>
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
     pannellum.viewer('panorama', {
       "type": "equirectangular",
-      "panorama": "/pictures/1/metroexodus3601.jpg",
+      "panorama": `/pictures/360panoramas/${getRandomInt(1,4)}.jpg`,
       "autoLoad": true,
       "compass": false,
       "showZoomCtrl": true,
