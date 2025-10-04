@@ -40,6 +40,7 @@ body {
 
 #game-map {
   width: 100%;
+  margin:0;
   cursor: crosshair;
 }
               #map-pin {
@@ -52,8 +53,12 @@ body {
                 pointer-events: none; 
                 display: none;
             }
-            #confirm-btn {
+            #confirm-btn{ 
+              position:absolute;
+              width: 280px;
                 margin-top: 10px;
+                bottom: 10px;
+                left: 10px;
                 padding: 8px 12px;
                 background: #222;
                 color: #fff;
