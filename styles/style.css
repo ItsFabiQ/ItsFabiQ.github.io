@@ -21,11 +21,22 @@ body {
     width: 100%;
     margin:0;
 }
-
-
-
-
-button:hover {
-    background-color: #383838;
+#map-container:hover {
+  transform: scale(2);  
+  transform-origin: bottom left; 
 }
 
+
+
+#map-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  border: 2px solid #333;
+  width: 300px;
+}
+
+#game-map {
+  width: 100%;
+  cursor: crosshair;
+}
