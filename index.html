@@ -16,56 +16,94 @@
   <div id="map-container">
   <img id="game-map" src="/pictures/maps/Volga.webp" alt="Metro map">
   <div id="map-pin"></div>
+  <div id="answer-pin"></div>
+  
   <button id="confirm-btn" disabled>Confirm Guess</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-  <script>
-    const SCALE = 1414 / 2048;
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    const currentpanorama = getRandomInt(1,5);
-    pannellum.viewer('panorama', {
-      "type": "equirectangular",
-      "panorama": `/pictures/360panoramas/${currentpanorama}.jpg`,
-      "autoLoad": true,
-      "compass": false,
-      "showZoomCtrl": true,
-      "hotSpots": [
+<script>
+  const SCALE = 1414 / 2048;
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
-      ]
-    });
-    const locations = {
-      1: { x: 131, y: 373 }, 
-      2: { x: 138, y: 345 },
-      3:{x: 177, y: 322},
-      4:{x: 149, y:  312},
-      5:{x:182, y:303},
-      
-    };
+  const currentpanorama = getRandomInt(1, 5);
+  pannellum.viewer('panorama', {
+    "type": "equirectangular",
+    "panorama": `/pictures/360panoramas/${currentpanorama}.jpg`,
+    "autoLoad": true,
+    "compass": false,
+    "showZoomCtrl": true,
+  });
 
-    const map = document.getElementById("game-map");
-    const pin = document.getElementById("map-pin");
-    const confirmBtn = document.getElementById("confirm-btn");
+  const locations = {
+    1: { x: 447.14666666666665, y: 1280}, 
+    2: { x: 453.97333333333336, y: 1170.7733333333333 },
+    3: { x: 604.16, y: 1092.2666666666667},
+    4: { x: 505.17333333333335, y: 1068.3733333333332},
+    5: { x: 703.1466666666666, y: 1054.72 },
+    6:{x:314.02666666666664, y: 938.6666666666666 },
+    7:{x:266.24, y: 1228.8},
+    8:{X: 392.53333333333336, Y: 1351.68},
+  };
 
-    map.addEventListener("click", (e) => {
-      const rect = map.getBoundingClientRect();
-      const x = e.clientX - rect.left; 
-      const y = e.clientY - rect.top; 
-      let answer = locations[currentpanorama];
-      console.log("Player guessed at:", x, y);
-        let dx = x - answer.x;
-        let dy = y - answer.y;
-        let distance = Math.sqrt(dx*dx + dy*dy) * SCALE;
+  const map = document.getElementById("game-map");
+  const pin = document.getElementById("map-pin");
+  const confirmBtn = document.getElementById("confirm-btn");
+  const answerPin = document.getElementById("answer-pin")
 
-        alert(`Your guess was ${Math.round(distance)}m away from the real location!`);
-         setTimeout(() => {
-            location.reload();
-          }, 2000);
+  let guess = null; 
 
-    });
-  </script>
+
+map.addEventListener("click", (e) => {
+  const rect = map.getBoundingClientRect();
+  const relX = (e.clientX - rect.left) / rect.width;
+  const relY = (e.clientY - rect.top) / rect.height;
+
+  
+  guess = {
+    x: relX * map.naturalWidth,
+    y: relY * map.naturalHeight
+  };
+
+  console.log(`${guess.x}, ${guess.y}`)
+  pin.style.left = `${relX * 100}%`;
+  pin.style.top = `${relY * 100}%`;
+  pin.style.display = "block";
+
+  confirmBtn.disabled = false;
+});
+
+
+confirmBtn.addEventListener("click", () => {
+  if (!guess) return;
+
+  let answer = locations[currentpanorama];
+
+
+  let dx = guess.x - answer.x;
+  let dy = guess.y - answer.y;
+  let distance = Math.sqrt(dx * dx + dy * dy) * SCALE;
+
+
+
+  let relAnswerX = answer.x;
+  let relAnswerY = answer.y;
+  answerPin.style.left = `${relAnswerX}px`;
+  answerPin.style.top = `${relAnswerY}px`;
+  answerPin.style.display = "block";
+
+  alert(`Your guess was ${Math.round(distance)}m away from the real location!`);
+
+   setTimeout(() => {
+         location.reload();
+   }, 2000);
+
+}
+);
+</script>
+
 
 
     

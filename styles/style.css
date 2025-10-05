@@ -43,30 +43,33 @@ body {
   margin:0;
   cursor: crosshair;
 }
-              #map-pin {
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                background: red;
-                border-radius: 50%;
-                transform: translate(-50%, -50%);
-                pointer-events: none; 
-                display: none;
-            }
-            #confirm-btn{ 
-              position:absolute;
-              width: 280px;
-                margin-top: 10px;
-                bottom: 10px;
-                left: 10px;
-                padding: 8px 12px;
-                background: #222;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            #confirm-btn:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-            }
+#map-pin, #answer-pin {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+#map-pin { background: red; }
+#answer-pin { background: green; }
+
+#confirm-btn{ 
+  position:absolute;
+  width: 280px;
+  margin-top: 10px;
+  bottom: 10px;
+  left: 10px;
+  padding: 8px 12px;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#confirm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
